@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEMINARIO</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                            950: '#022c22',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .tab-panel { display: none; }
+        .tab-panel.active { display: block; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-full flex flex-col antialiased selection:bg-emerald-500 selection:text-white transition-colors duration-200">
+
+    <!-- Sticky Navigation Navbar -->
+    <header class="bg-brand-900/95 text-white shadow-xl sticky top-0 z-50 backdrop-blur-md border-b border-brand-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-col md:flex-row justify-between items-center gap-3">
+            <div class="flex items-center space-x-3 w-full md:w-auto justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-brand-800 p-2.5 rounded-xl border border-brand-700 shadow-inner">
+                        <i class="fa-solid fa-leaf text-emerald-300 text-2xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs uppercase tracking-widest text-emerald-300 font-bold"><em>Agave / Founcroia</em></span>
+                        <h1 class="text-lg font-extrabold tracking-tight"> <em>Agave Salmiana</em> • Clima BS</h1>
+                    </div>
+                </div>
+                <button onclick="toggleDarkMode()" class="md:hidden p-2 rounded-lg bg-brand-800 text-emerald-300 hover:text-white">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+
+            <!-- Navigation Tabs -->
+            <nav class="flex flex-wrap gap-1 justify-center bg-brand-950/80 p-1.5 rounded-2xl border border-brand-800/80 text-xs font-semibold">
+                <button onclick="switchTab('inicio')" id="btn-inicio" class="nav-btn px-3 py-2 rounded-xl transition-all text-white bg-brand-700 shadow-sm flex items-center gap-1.5">
+                    <i class="fa-solid fa-house"></i> Inicio
+                </button>
+                <button onclick="switchTab('climatico')" id="btn-climatico" class="nav-btn px-3 py-2 rounded-xl transition-all text-emerald-200 hover:text-white hover:bg-brand-800 flex items-center gap-1.5">
+                    <i class="fa-solid fa-cloud-sun font-normal"></i> Marco Teórico
+                </button>
+                <button onclick="switchTab('metodologia')" id="btn-metodologia" class="nav-btn px-3 py-2 rounded-xl transition-all text-emerald-200 hover:text-white hover:bg-brand-800 flex items-center gap-1.5">
+                    <i class="fa-solid fa-vial-virus"></i> Metodología AQP
+                </button>
+                <button onclick="switchTab('resultados')" id="btn-fichas" class="nav-btn px-3 py-2 rounded-xl transition-all text-emerald-200 hover:text-white hover:bg-brand-800 flex items-center gap-1.5">
+                    <i class="fa-solid fa-book-bookmark"></i> Resultados AQP
+                </button>
+                <button onclick="switchTab('comparativa')" id="btn-comparativa" class="nav-btn px-3 py-2 rounded-xl transition-all text-emerald-200 hover:text-white hover:bg-brand-800 flex items-center gap-1.5">
+                    <i class="fa-solid fa-table-list"></i> Bromatología NRC
+                </button>
+		<button onclick="switchTab('calculadora')" id="btn-calculadora" class="nav-btn px-3 py-2 rounded-xl transition-all text-emerald-200 hover:text-white hover:bg-brand-800 flex items-center gap-1.5">
+   		<i class="fa-solid fa-calculator"></i> Calculadora Climática
+		</button>
+                <button onclick="switchTab('referencias')" id="btn-referencias" class="nav-btn px-3 py-2 rounded-xl transition-all text-emerald-200 hover:text-white hover:bg-brand-800 flex items-center gap-1.5">
+                    <i class="fa-solid fa-quote-right"></i> Referencias
+                </button>
+            </nav>
+
+            <button onclick="toggleDarkMode()" class="hidden md:flex p-2.5 rounded-xl bg-brand-800 text-emerald-300 hover:text-white border border-brand-700 transition">
+                <i class="fa-solid fa-moon text-sm" id="darkIcon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Dynamic Content Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+        <!-- TAB 1: INICIO & HERO -->
+        <section id="inicio" class="tab-panel active space-y-8">
+            <!-- Hero Banner -->
+            <div class="relative overflow-hidden bg-gradient-to-br from-brand-900 via-brand-800 to-emerald-950 text-white rounded-3xl p-8 sm:p-12 shadow-2xl border border-brand-700">
+                <div class="absolute -right-10 -bottom-10 opacity-10 text-white text-9xl font-black pointer-events-none">
+                    <i class="fa-solid fa-plant-wilt"></i>
+                </div>
+                <div class="relative z-10 max-w-3xl space-y-4">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-xs font-bold uppercase tracking-wider">
+                        <i class="fa-solid fa-graduation-cap"></i> Problemática
+                    </div>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+                        Agave: Alternativa Forrajera
+                    </h2>
+                    <p class="text-emerald-100 text-base sm:text-justify leading-relaxed font-normal">
+                        En la actualidad, la actividad agropecuaria tanto a nivel nacional como global se enfrenta a retos complejos y urgentes, que limitan la disponibilidad de insumos forrajeros, obligando al sector pecuario a buscar alternativas vegetales sostenibles. En este contexto, resulta fundamental evaluar distintos recursos alimenticios considerando su disponibilidad, composición nutricional, digestibilidad y aprovechamiento científico, lo que ayuda a reducir la dependencia de insumos convencionales, aprovechar recursos regionales y disminuir los costos de alimentación animal.</p>
+                    
+                    <div class="pt-4 flex flex-wrap gap-4 text-xs font-semibold">
+                        <div class="bg-brand-950/60 backdrop-blur-sm px-4 py-3 rounded-2xl border border-brand-700/80 flex items-center gap-3">
+                            <i class="fa-solid fa-school text-emerald-400 text-lg"></i>
+                            <div>
+                                <span class="text-slate-400 block text-[10px]">Evaluar su AQP</span>
+                                <span class="text-white">Realizar un Análisis de Weende para la composición bromatológica</span>
+                            </div>
+                        </div>
+                        <div class="bg-brand-950/60 backdrop-blur-sm px-4 py-3 rounded-2xl border border-brand-700/80 flex items-center gap-3">
+                            <i class="fa-solid fa-earth-americas text-emerald-400 text-lg"></i>
+                            <div>
+                                <span class="text-slate-400 block text-[10px]">Describir su composición</span>
+                                <span class="text-white">Nombrar teoricamnete metodos de conservación del Agave </span>
+                            </div>
+                        </div>
+                        <div class="bg-brand-950/60 backdrop-blur-sm px-4 py-3 rounded-2xl border border-brand-700/80 flex items-center gap-3">
+                            <i class="fa-solid fa-book text-emerald-400 text-lg"></i>
+                            <div>
+                                <span class="text-slate-400 block text-[10px]">Clasificar nutricionalmente</span>
+                                <span class="text-white">Seguir los lineamientos establecidos por el NRC para el Agave</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Access Summary Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div onclick="switchTab('climatico')" class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition cursor-pointer group">
+                    <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/50 rounded-xl flex items-center justify-center text-emerald-700 dark:text-emerald-400 mb-4 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-temperature-arrow-up text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-900 dark:text-white text-base mb-1">Clima A de México</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Temperaturas &gt;18 °C. Llanuras costeras del Golfo, Pacífico y Península de Yucatán.</p>
+                </div>
+
+                <div onclick="switchTab('metodologia')" class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition cursor-pointer group">
+                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/50 rounded-xl flex items-center justify-center text-blue-700 dark:text-blue-400 mb-4 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-flask text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-900 dark:text-white text-base mb-1">Metodología AQP</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Las 6 fracciones del análisis de Weende: MS, PC, EE, FC, Cenizas y ELN por diferencia.</p>
+                </div>
+
+                <div onclick="switchTab('fichas')" class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition cursor-pointer group">
+                    <div class="w-12 h-12 bg-amber-100 dark:bg-amber-900/50 rounded-xl flex items-center justify-center text-amber-700 dark:text-amber-400 mb-4 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-seedling text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-900 dark:text-white text-base mb-1">Fichas Técnicas</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Gramíneas, Leguminosas y Arbustos con taxonomía oficial y nomenclatura NRC.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: MARCO TEÓRICO  -->
+        <section id="climatico" class="tab-panel space-y-8">
+            <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 shadow-sm space-y-6">
+                <div class="border-b border-slate-200 dark:border-slate-700 pb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                    <div>
+                        <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">Clasificación de Enriqueta García</span>
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-0.5">Delimitación del Clima A en México</h2>
+                    </div>
+                    <span class="bg-emerald-100 dark:bg-emerald-900/50 text-emerald-800 dark:text-emerald-300 text-xs font-bold px-3 py-1.5 rounded-full">
+                        Temp. Media Anual &gt; 18 °C
+                    </span>
+                </div>
+
+                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                    Según el sistema modificado por Enriqueta García para la República Mexicana, el <strong>Grupo Clima A (Cálidos e Isotérmicos)</strong> abarca las zonas donde la temperatura media del mes más frío es superior a $18^\circ\text{C}$. Se subdivide según el régimen pluviométrico en <strong>Af</strong> (Cálido Húmedo con lluvias todo el año), <strong>Am</strong> (Cálido Húmedo con lluvias de verano y monzónico) y <strong>Aw</strong> (Cálido Subhúmedo con lluvias en verano).
+                </p>
+
+                <!-- Climate Group Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-slate-50 dark:bg-slate-700/50 p-5 rounded-2xl border border-slate-200 dark:border-slate-600 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-lg font-extrabold text-emerald-700 dark:text-emerald-400">Clima Af</span>
+                            <span class="text-[10px] font-bold bg-emerald-200 dark:bg-emerald-800 text-emerald-900 dark:text-emerald-100 px-2 py-0.5 rounded">Muy Húmedo</span>
+                        </div>
+                        <h3 class="text-sm font-bold text-slate-900 dark:text-white">Cálido Húmedo (Lluvias todo el año)</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-300">
+                            Precipitación anual abundante sin estación seca bien definida (&gt;2,000 mm). Presente en Selva Alta de Tabasco, Norte de Chiapas y Vertiente del Golfo en Veracruz.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 dark:bg-slate-700/50 p-5 rounded-2xl border border-slate-200 dark:border-slate-600 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-lg font-extrabold text-emerald-700 dark:text-emerald-400">Clima Am</span>
+                            <span class="text-[10px] font-bold bg-emerald-200 dark:bg-emerald-800 text-emerald-900 dark:text-emerald-100 px-2 py-0.5 rounded">Monzónico</span>
+                        </div>
+                        <h3 class="text-sm font-bold text-slate-900 dark:text-white">Cálido Húmedo (Lluvias de verano)</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-300">
+                            Estación corta de sequía pero con intensas lluvias de verano (1,500 - 2,000 mm). Típico del sur de Veracruz, Soconusco en Chiapas y zonas del Soconusco.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 dark:bg-slate-700/50 p-5 rounded-2xl border border-slate-200 dark:border-slate-600 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-lg font-extrabold text-emerald-700 dark:text-emerald-400">Clima Aw</span>
+                            <span class="text-[10px] font-bold bg-emerald-200 dark:bg-emerald-800 text-emerald-900 dark:text-emerald-100 px-2 py-0.5 rounded">Subhúmedo</span>
+                        </div>
+                        <h3 class="text-sm font-bold text-slate-900 dark:text-white">Cálido Subhúmedo (Lluvias en verano)</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-300">
+                            El más extendido en el trópico mexicano. Marcada estación seca de 5 a 7 meses. Domina las Llanuras Costeras del Pacífico, Península de Yucatán y Cuenca del Balsas.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- State Validator Section -->
+                <div class="pt-6 border-t border-slate-200 dark:border-slate-700 space-y-4">
+                    <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                        <i class="fa-solid fa-map-location-dot text-emerald-600"></i> Verificador Geográfico de Estados para Clima A
+                    </h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">
+                        Selecciona un estado de la lista para validar si pertenece a las regiones de Clima A (Llanuras Costeras, Península de Yucatán o Cuencas Interiores) o si debe descartarse por ser templado/seco (B/C).
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 items-center">
+                        <select id="stateSelect" onchange="validateState()" class="w-full sm:w-80 bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 text-slate-800 dark:text-white text-xs rounded-xl p-3 focus:ring-emerald-500 focus:border-emerald-500">
+                            <option value="">-- Selecciona un estado mexicano --</option>
+                            <option value="veracruz">Veracruz (Llanura del Golfo)</option>
+                            <option value="tabasco">Tabasco (Llanura Tabasqueña)</option>
+                            <option value="chiapas">Chiapas (Depresión Central / Costa)</option>
+                            <option value="yucatan">Yucatán (Península)</option>
+                            <option value="quintana_roo">Quintana Roo (Península)</option>
+                            <option value="campeche">Campeche (Península)</option>
+                            <option value="oaxaca">Oaxaca (Costa e Istmo)</option>
+                            <option value="guerrero">Guerrero (Costa / Cuenca Balsas)</option>
+                            <option value="michoacan">Michoacán (Tierra Caliente / Costa)</option>
+                            <option value="colima">Colima (Costa Pacífico)</option>
+                            <option value="jalisco">Jalisco (Costa / Valles Bajos)</option>
+                            <option value="nayarit">Nayarit (Costa Pacífico)</option>
+                            <option value="sinaloa">Sinaloa (Costa Sur &gt;24°N)</option>
+                            <option value="tamaulipas">Tamaulipas (Llanura Costera Sur)</option>
+                            <option value="puebla">Puebla (Cuenca del Balsas Sur)</option>
+                            <!-- Non-Clima A states for validation testing -->
+                            <option value="sonora">Sonora (Descarte: Muy Seco BW)</option>
+                            <option value="san_luis">San Luis Potosí (Descarte: Seco BS)</option>
+                            <option value="hidalgo">Hidalgo (Descarte: Templado C)</option>
+                            <option value="queretaro">Querétaro (Descarte: Templado C)</option>
+                        </select>
+
+                        <div id="stateResult" class="w-full sm:flex-1 p-3 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-600">
+                            Selecciona un estado para ver su estatus de Clima A y sus subregiones.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: METODOLOGÍA AQP (ANÁLISIS QUÍMICO PROXIMAL) -->
+        <section id="metodologia" class="tab-panel space-y-8">
+            <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 shadow-sm space-y-6">
+                <div class="border-b border-slate-200 dark:border-slate-700 pb-4">
+                    <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">Fundamentos de Laboratorio</span>
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-0.5">Metodología AQP (Análisis Químico Proximal de Weende)</h2>
+                </div>
+
+                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                    El Análisis Químico Proximal (AQP) o Método de Weende divide de manera cuantitativa cualquier forraje en 6 fracciones analíticas estándar. Constituye la base para evaluar la calidad bromatológica de los alimentos para rumiantes.
+                </p>
+
+                <!-- Flowchart visual grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- MS -->
+                    <div class="bg-slate-50 dark:bg-slate-700/50 p-5 rounded-2xl border border-slate-200 dark:border-slate-600 space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400">Fracción 1</span>
+                            <i class="fa-solid fa-temperature-high text-slate-400"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 dark:text-white text-sm">Humedad / Materia Seca (MS)</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-300">
+                            <strong>Fundamento:</strong> Evaporación del agua libre por secado en estufa a 100-105°C durante 24 horas hasta peso constante. El residuo seco es la Materia Seca (MS).
+                        </p>
+                    </div>
+
+                    <!-- Cenizas -->
+                    <div class="bg-slate-50 dark:bg-slate-700/50 p-5 rounded-2xl border border-slate-200 dark:border-slate-600 space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400">Fracción 2</span>
+                            <i class="fa-solid fa-fire-flame-curved text-slate-400"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 dark:text-white text-sm">Cenizas (Materia Inorgánica)</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-300">
+                            <strong>Fundamento:</strong> Calcinación en mufla a 550-600°C. Toda la materia orgánica se volatiliza (CO₂, H₂O, N₂), quedando únicamente los minerales totales.
+                        </p>
+                    </div>
+
+                    <!-- PC -->
+                    <div class="bg-slate-50 dark:bg-slate-700/50 p-5 rounded-2xl border border-slate-200 dark:border-slate-600 space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400">Fracción 3</span>
+                            <i class="fa-solid fa-dna text-slate-400"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 dark:text-white text-sm">Proteína Cruda (PC)</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-300">
+                            <strong>Fundamento:</strong> Método Kjeldahl (Digestión, Destilación y Titulación). Se determina el % de Nitrógeno Total y se multiplica por el factor 6.25 (%PC = %N \times 6.25).
+                        </p>
+                    </div>
+
+                    <!-- EE -->
+                    <div class="bg-slate-50 dark:bg-slate-700/50 p-5 rounded-2xl border border-slate-200 dark:border-slate-600 space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400">Fracción 4</span>
+                            <i class="fa-solid fa-droplet text-slate-400"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 dark:text-white text-sm">Extracto Etéreo (EE)</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-300">
+                            <strong>Fundamento:</strong> Extracción continua en aparato Soxhlet empleando solvente orgánico no polar (éter de petróleo). Mide lípidos, pigmentos y ceras.
+                        </p>
+                    </div>
+
+                    <!-- FC -->
+                    <div class="bg-slate-50 dark:bg-slate-700/50 p-5 rounded-2xl border border-slate-200 dark:border-slate-600 space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400">Fracción 5</span>
+                            <i class="fa-solid fa-cubes-stacked text-slate-400"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 dark:text-white text-sm">Fibra Cruda (FC)</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-300">
+                            <strong>Fundamento:</strong> Digestión ácida secuencial (H₂SO₄) y alcalina (NaOH). Representa carbohidratos insolubles (celulosa y lignina parcial).
+                        </p>
+                    </div>
+
+                    <!-- ELN -->
+                    <div class="bg-slate-50 dark:bg-slate-700/50 p-5 rounded-2xl border border-slate-200 dark:border-slate-600 space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400">Fracción 6</span>
+                            <i class="fa-solid fa-calculator text-slate-400"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 dark:text-white text-sm">Extracto Libre de Nitrógeno (ELN)</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-300">
+                            <strong>Fundamento:</strong> Cálculo matemático por diferencia: %ELN = 100 - (%Humedad + %Cen + %PC + %EE + %FC). Representa azúcares solubles y almidones.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: RESULTADOS AQP -->
+      <section id="resultados" class="tab-panel space-y-8">
+            <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 shadow-sm space-y-6">
+                
+                <!-- Cabecera con Título Limpio a la Izquierda -->
+                <div class="border-b border-slate-200 dark:border-slate-700 pb-4">
+                    <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">AQP / FDN</span>
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-0.5">Análisis de Weende</h2>
+                </div>
+
+                <!-- Cards Grid Único -->
+                <div id="forageCardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">     
+   <!-- Humedad-->
+<div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
+    <!-- Etiquetas superiores -->
+    <div class="flex items-center justify-between">
+        <span class="text-xs font-bold text-emerald-700 bg-emerald-100 dark:bg-emerald-900/50 dark:text-emerald-300 px-3 py-1 rounded-full uppercase tracking-wider">
+            Humedad
+        </span>
+    </div>
+
+    <!-- Títulos y datos rápidos -->
+    <div>
+        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Agave (Maguey Forrajero)</h3>
+        <p class="text-sm italic text-slate-500 dark:text-slate-400">Agave salmiana</p>
+    </div>
+
+    <div class="space-y-1.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 border-t border-slate-100 dark:border-slate-700/60 pt-3">
+        <p><strong>Caja 1:</strong></p>        
+        <p><strong>Peso sin muestra:</strong> 19.6818g</p>
+        <p><strong>Peso con muestra:</strong> 21.6978g</p>
+        <p><strong>Peso de la muestra:</strong> 2.0160g</p>
+        <p><strong>Tratamiento:</strong> 21.5699g</p>
+        <p><strong>Caja 2</strong></p>
+        <p><strong>Peso sin muestra:</strong> 18.9318g</p>
+        <p><strong>Peso con muestra:</strong> 20.9319g</p>
+        <p><strong>Peso de la muestra:</strong>2.0001g</p>
+        <p><strong>Tratamiento:</strong> 20.8051g</p>
+    </div>
+
+    <!-- Botón para abrir el modal con la imagen -->
+    <div class="pt-2">
+                            <button onclick="abrirModalHumedad()"class="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-semibold py-2 px-3 rounded-xl text-xs transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-file-lines"></i> Ver Ficha Completa
+        </button>
+    </div>
+</div>              
+
+   <!-- Cenizas -->
+<div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
+    <!-- Etiquetas superiores -->
+    <div class="flex items-center justify-between">
+        <span class="text-xs font-bold text-emerald-700 bg-emerald-100 dark:bg-emerald-900/50 dark:text-emerald-300 px-3 py-1 rounded-full uppercase tracking-wider">
+            Cenizas
+        </span>
+    </div>
+    <!-- Títulos y datos rápidos -->
+    <div>
+        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Agave (Maguey Forrajero)</h3>
+        <p class="text-sm italic text-slate-500 dark:text-slate-400">Agave salmiana</p>
+    </div>
+    <div class="space-y-1.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 border-t border-slate-100 dark:border-slate-700/60 pt-3">
+        <p><strong>Crisol clave 52:</strong></p>        
+        <p><strong>Peso sin muestra:</strong> 26.0139g</p>
+        <p><strong>Peso con muestra:</strong> 27.0258g</p>
+        <p><strong>Tratamiento:</strong> 26.1210g</p>
+        <p><strong>Crisol clave G4:</strong></p>
+        <p><strong>Peso sin muestra:</strong> 30.2900g</p>
+        <p><strong>Peso con muestra:</strong> 31.3023g</p>
+        <p><strong>Tratamiento:</strong> 30.4000g</p>
+    </div>
+    <!-- Botón para abrir el modal con la imagen -->
+   <div class="pt-2">
+                            <button onclick="abrirModalCenizas()"class="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-semibold py-2 px-3 rounded-xl text-xs transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-file-lines"></i> Ver Ficha Completa
+        </button>
+    </div>
+</div>   
+              <!-- Fibra detergente neutro -->
+<div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
+    <!-- Etiquetas superiores -->
+    <div class="flex items-center justify-between">
+        <span class="text-xs font-bold text-emerald-700 bg-emerald-100 dark:bg-emerald-900/50 dark:text-emerald-300 px-3 py-1 rounded-full uppercase tracking-wider">
+            Fibra Detergente Neutro 
+        </span>
+    </div>
+    <!-- Títulos y datos rápidos -->
+    <div>
+        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Agave (Maguey Forrajero)</h3>
+        <p class="text-sm italic text-slate-500 dark:text-slate-400">Agave salmiana</p>
+    </div>
+
+    <div class="space-y-1.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 border-t border-slate-100 dark:border-slate-700/60 pt-3">
+        <p><strong>Cartucho clave IV:</strong></p>        
+        <p><strong>Peso sin muestra:</strong> 0.4366g</p>
+        <p><strong>Peso con muestra:</strong> 1.4376g</p>
+        <p><strong>Peso sin muestra (filtro):</strong> 1.7200</p>
+        <p><strong>Tratamiento (filtro):</strong> 2.0114g</p>
+        <p><strong>Cartucho clave II:</strong></p>
+        <p><strong>Peso sin muestra:</strong> 0.4366g</p>
+        <p><strong>Peso con muestra:</strong> 1.4410g</p>
+        <p><strong>Peso sin muestra (filtro):</strong> 1.7440g</p>
+        <p><strong>Tratamiento (filtro)</strong> 1.9829g</p>
+    </div>
+    <!-- Botón para abrir el modal con la imagen -->
+    <div class="pt-2">
+                            <button onclick="abrirModalFDN()"class="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-semibold py-2 px-3 rounded-xl text-xs transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-file-lines"></i> Ver Ficha Completa
+                            </button>
+                            </div>
+                            </div>   
+   <!-- Proteina-->
+<div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
+    <!-- Etiquetas superiores -->
+    <div class="flex items-center justify-between">
+        <span class="text-xs font-bold text-emerald-700 bg-emerald-100 dark:bg-emerald-900/50 dark:text-emerald-300 px-3 py-1 rounded-full uppercase tracking-wider">
+            Proteína
+        </span>
+    </div>
+
+    <!-- Títulos y datos rápidos -->
+    <div>
+        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Agave (Maguey Forrajero)</h3>
+        <p class="text-sm italic text-slate-500 dark:text-slate-400">Agave salmiana</p>
+    </div>
+
+    <div class="space-y-1.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 border-t border-slate-100 dark:border-slate-700/60 pt-3">
+        <p><strong>Papel copia 1:</strong></p>        
+        <p><strong>Peso sin muestra:</strong> 0.4259g</p>
+        <p><strong>Peso con muestra:</strong> 1.4764g</p>
+        <p><strong>ml.HCl gastados</strong> 6.4ml</p>
+        <p><strong>Papel copia 2</strong></p>
+        <p><strong>Peso sin muestra:</strong> 0.4344g</p>
+        <p><strong>Peso con muestra:</strong> 1.4392g</p>
+        <p><strong>ml.HCl gastados:</strong>5.3ml</p>
+    </div>
+
+    <!-- Botón para abrir el modal con la imagen -->
+    <div class="pt-2">
+                            <button onclick="abrirModalPC()"class="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-semibold py-2 px-3 rounded-xl text-xs transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-file-lines"></i> Ver Ficha Completa
+        </button>
+    </div>
+</div>   
+   <!-- Extracto Etéreo-->
+<div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
+    <!-- Etiquetas superiores -->
+    <div class="flex items-center justify-between">
+        <span class="text-xs font-bold text-emerald-700 bg-emerald-100 dark:bg-emerald-900/50 dark:text-emerald-300 px-3 py-1 rounded-full uppercase tracking-wider">
+            Extracto Etéreo
+        </span>
+    </div>
+
+    <!-- Títulos y datos rápidos -->
+    <div>
+        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Agave (Maguey Forrajero)</h3>
+        <p class="text-sm italic text-slate-500 dark:text-slate-400">Agave salmiana</p>
+    </div>
+
+    <div class="space-y-1.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 border-t border-slate-100 dark:border-slate-700/60 pt-3">
+        <p><strong>Caja 1:</strong></p>        
+        <p><strong>Peso sin muestra:</strong> 19.6818g</p>
+        <p><strong>Peso con muestra:</strong> 21.6978g</p>
+        <p><strong>Humedad:</strong> 21.569g</p>
+        <p><strong>Caja 2</strong></p>
+        <p><strong>Peso sin muestra:</strong> 18.9318g</p>
+        <p><strong>Peso con muestra:</strong> 20.9319g</p>
+        <p><strong>Humedad:</strong>20.805ǵ</p>
+    </div>
+
+    <!-- Botón para abrir el modal con la imagen -->
+    <div class="pt-2">
+                            <button onclick="abrirModalAgave()"class="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-semibold py-2 px-3 rounded-xl text-xs transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-file-lines"></i> Ver Ficha Completa
+        </button>
+    </div>
+</div>  
+   <!--Fibra Cruda-->
+<div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
+    <!-- Etiquetas superiores -->
+    <div class="flex items-center justify-between">
+        <span class="text-xs font-bold text-emerald-700 bg-emerald-100 dark:bg-emerald-900/50 dark:text-emerald-300 px-3 py-1 rounded-full uppercase tracking-wider">
+            Fibra Cruda
+        </span>
+    </div>
+
+    <!-- Títulos y datos rápidos -->
+    <div>
+        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Agave (Maguey Forrajero)</h3>
+        <p class="text-sm italic text-slate-500 dark:text-slate-400">Agave salmiana</p>
+    </div>
+
+    <div class="space-y-1.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 border-t border-slate-100 dark:border-slate-700/60 pt-3">
+        <p><strong>Caja 1:</strong></p>        
+        <p><strong>Peso sin muestra:</strong> 19.6818g</p>
+        <p><strong>Peso con muestra:</strong> 21.6978g</p>
+        <p><strong>Humedad:</strong> 21.569g</p>
+        <p><strong>Caja 2</strong></p>
+        <p><strong>Peso sin muestra:</strong> 18.9318g</p>
+        <p><strong>Peso con muestra:</strong> 20.9319g</p>
+        <p><strong>Humedad:</strong>20.805ǵ</p>
+    </div>
+
+    <!-- Botón para abrir el modal con la imagen -->
+    <div class="pt-2">
+                            <button onclick="abrirModalAgave()"class="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-semibold py-2 px-3 rounded-xl text-xs transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-file-lines"></i> Ver Ficha Completa
+        </button>
+    </div>
+</div>               
+   <!--ELN-->
+<div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
+    <!-- Etiquetas superiores -->
+    <div class="flex items-center justify-between">
+        <span class="text-xs font-bold text-emerald-700 bg-emerald-100 dark:bg-emerald-900/50 dark:text-emerald-300 px-3 py-1 rounded-full uppercase tracking-wider">
+            Extracto Libre de Nitrógeno
+        </span>
+    </div>
+
+    <!-- Títulos y datos rápidos -->
+    <div>
+        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Agave (Maguey Forrajero)</h3>
+        <p class="text-sm italic text-slate-500 dark:text-slate-400">Agave salmiana</p>
+    </div>
+
+    <div class="space-y-1.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 border-t border-slate-100 dark:border-slate-700/60 pt-3">
+        <p><strong>Caja 1:</strong></p>        
+        <p><strong>Peso sin muestra:</strong> 19.6818g</p>
+        <p><strong>Peso con muestra:</strong> 21.6978g</p>
+        <p><strong>Humedad:</strong> 21.569g</p>
+        <p><strong>Caja 2</strong></p>
+        <p><strong>Peso sin muestra:</strong> 18.9318g</p>
+        <p><strong>Peso con muestra:</strong> 20.9319g</p>
+        <p><strong>Humedad:</strong>20.805ǵ</p>
+    </div>
+
+    <!-- Botón para abrir el modal con la imagen -->
+    <div class="pt-2">
+                            <button onclick="abrirModalAgave()"class="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-semibold py-2 px-3 rounded-xl text-xs transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-file-lines"></i> Ver Ficha Completa
+        </button>
+    </div>
+</div>
+</section>
+
+        <!-- TAB 5: COMPARATIVA BROMATOLÓGICA (TABLA INTERACTIVA NRC) -->
+        <section id="comparativa" class="tab-panel space-y-8">
+            <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 shadow-sm space-y-6">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-200 dark:border-slate-700 pb-4">
+                    <div>
+                        <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">Análisis Proximal & NRC</span>
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-0.5">Tabla Comparativa Bromatológica (Base Seca)</h2>
+                    </div>
+                    
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs text-slate-500 dark:text-slate-400 font-semibold">Base de Cálculo:</span>
+                        <select id="baseToggle" onchange="toggleTableBase()" class="bg-slate-100 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 text-xs text-slate-800 dark:text-white rounded-xl px-3 py-1.5 focus:ring-emerald-500">
+                            <option value="dry">Base Seca (100% MS)</option>
+                            <option value="fresh">Base Húmeda (93.6581% HUMEDAD)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto border border-slate-200 dark:border-slate-700 rounded-2xl">
+                    <table class="w-full text-left text-xs text-slate-700 dark:text-slate-200">
+                        <thead class="bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-white font-semibold uppercase tracking-wider text-[11px]">
+                            <tr>
+                                <th class="p-3.5">AQP</th>
+                                <th class="p-3.5">%H</th>
+                                <th class="p-3.5">% MS</th>
+                                <th class="p-3.5">% PC</th>
+                                <th class="p-3.5">% EE</th>
+                                <th class="p-3.5">% FC</th>
+                                <th class="p-3.5">% CEN</th>
+                                <th class="p-3.5">% ELN</th>
+                                <th class="p-3.5">Referencia (2016-2026)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bromatologicalTableBody" class="divide-y divide-slate-200 dark:divide-slate-700">
+                            <!-- JS dynamic population -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+	<!-- TAB: CALCULADORA CLIMÁTICA INTERACTIVA -->
+<section id="calculadora" class="tab-panel space-y-8">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 shadow-sm space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-700 pb-4">
+            <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">Herramienta Automática</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-0.5">Calculadora de Clima (Köppen - Enriqueta García)</h2>
+        </div>
+
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+            Prueba el algoritmo de clasificación ingresando o cargando los datos de 12 meses (Ene-Dic) de temperatura media mensual (°C) y precipitación mensual (mm).
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Temperaturas Mensuales (°C - 12 valores separados por comas):</label>
+                <input type="text" id="inputTemp" value="15.0, 16.2, 18.0, 20.1, 21.5, 21.0, 20.0, 20.2, 19.8, 18.5, 20.5, 14.8" class="w-full bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 text-xs text-slate-800 dark:text-white rounded-xl p-3">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Precipitaciones Mensuales (mm - 12 valores separados por comas):</label>
+                <input type="text" id="inputPrecip" value="10.0, 8.0, 12.0, 25.0, 80.0, 150.0, 180.0, 170.0, 160.0, 70.0, 20.0, 10.0" class="w-full bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 text-xs text-slate-800 dark:text-white rounded-xl p-3">
+            </div>
+        </div>
+
+        <button onclick="ejecutarCalculoClima()" class="bg-emerald-700 hover:bg-emerald-800 text-white font-semibold py-2.5 px-6 rounded-xl text-xs transition">
+            Clasificar Clima
+        </button>
+
+        <div id="resultadoClimaBox" class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 text-xs font-mono text-slate-700 dark:text-slate-300 space-y-1 hidden">
+            <p class="font-bold text-emerald-600 dark:text-emerald-400 text-sm">Resultado del Análisis:</p>
+            <div id="detalleCalculo"></div>
+        </div>
+    </div>
+</section>
+
+        <!-- TAB 6: REFERENCIAS BIBLIOGRÁFICAS (<10 AÑOS) -->
+        <section id="referencias" class="tab-panel space-y-8">
+            <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 shadow-sm space-y-6">
+                <div class="border-b border-slate-200 dark:border-slate-700 pb-4">
+                    <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">Literatura Científica Vigente (2016–2026)</span>
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-0.5">Fuentes Bibliográficas (APA 7.ª Edición)</h2>
+                </div>
+
+                <div class="space-y-4 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+                    <div class="p-4 bg-slate-50 dark:bg-slate-700/50 rounded-2xl border border-slate-200 dark:border-slate-600 font-serif leading-relaxed flex justify-between items-start gap-4">
+                        <div>
+                            <p class="font-semibold text-slate-900 dark:text-white">Mendoza Martínez, G. D., Hernández García, P. A., Plata Pérez, F. X., Martínez García, J. A., Arcos García, J. L. y Lee Rangel, H. A. (2022).</p>
+                            <p class="text-slate-600 dark:text-slate-400 italic">Nutrición animal cuantitativa.</p>
+                            <p class="text-slate-500 dark:text-slate-400">UAM Xochimilco, Editorial CBS. México.</p>
+                        </div>
+                        <button onclick="copyCitation(this)" data-citation="Mendoza Martínez, G. D., et al. (2022). Nutrición animal cuantitativa. UAM Xochimilco." class="shrink-0 p-2 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-100 rounded-lg">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 dark:bg-slate-700/50 rounded-2xl border border-slate-200 dark:border-slate-600 font-serif leading-relaxed flex justify-between items-start gap-4">
+                        <div>
+                            <p class="font-semibold text-slate-900 dark:text-white">Elizondo-Salazar, J. A. (2020).</p>
+                            <p class="text-slate-600 dark:text-slate-400 italic">Estimación del suministro de proteína metabolizable en una ración para ganado de leche.</p>
+                            <p class="text-slate-500 dark:text-slate-400">Nutrición Animal Tropical, 14(2), 85-100. DOI: 10.15517/nat.v14i2.44256</p>
+                        </div>
+                        <button onclick="copyCitation(this)" data-citation="Elizondo-Salazar, J. A. (2020). Nutrición Animal Tropical, 14(2), 85-100." class="shrink-0 p-2 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-100 rounded-lg">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 dark:bg-slate-700/50 rounded-2xl border border-slate-200 dark:border-slate-600 font-serif leading-relaxed flex justify-between items-start gap-4">
+                        <div>
+                            <p class="font-semibold text-slate-900 dark:text-white">Shimada, A. (2018).</p>
+                            <p class="text-slate-600 dark:text-slate-400 italic">Nutrición animal.</p>
+                            <p class="text-slate-500 dark:text-slate-400">Editorial Trillas. México.</p>
+                        </div>
+                        <button onclick="copyCitation(this)" data-citation="Shimada, A. (2018). Nutrición animal. Editorial Trillas." class="shrink-0 p-2 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-100 rounded-lg">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 dark:bg-slate-700/50 rounded-2xl border border-slate-200 dark:border-slate-600 font-serif leading-relaxed flex justify-between items-start gap-4">
+                        <div>
+                            <p class="font-semibold text-slate-900 dark:text-white">Reyes, C., Hepp, C. y Naguil, A. (2023).</p>
+                            <p class="text-slate-600 dark:text-slate-400 italic">Método directo para la medición de materia seca y disponibilidad de forraje en praderas a pastoreo.</p>
+                            <p class="text-slate-500 dark:text-slate-400">Instituto de Investigaciones Agropecuarias (INIA). DOI: 10.13140/RG.2.2.32363.52002</p>
+                        </div>
+                        <button onclick="copyCitation(this)" data-citation="Reyes, C., Hepp, C. y Naguil, A. (2023). INIA Chile." class="shrink-0 p-2 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-100 rounded-lg">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 dark:bg-slate-700/50 rounded-2xl border border-slate-200 dark:border-slate-600 font-serif leading-relaxed flex justify-between items-start gap-4">
+                        <div>
+                            <p class="font-semibold text-slate-900 dark:text-white">Weiss, W. P. (2022).</p>
+                            <p class="text-slate-600 dark:text-slate-400 italic">Feed supplements: vitamins.</p>
+                            <p class="text-slate-500 dark:text-slate-400">Encyclopedia of Dairy Sciences (Vol. 1, pp. 548-555). Academic Press.</p>
+                        </div>
+                        <button onclick="copyCitation(this)" data-citation="Weiss, W. P. (2022). Encyclopedia of Dairy Sciences." class="shrink-0 p-2 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-100 rounded-lg">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for Detailed Forage Inspection -->
+    <div id="forageModal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 space-y-6 shadow-2xl border border-slate-200 dark:border-slate-700">
+            <div class="flex justify-between items-start border-b border-slate-200 dark:border-slate-700 pb-4">
+                <div>
+                    <span id="modalBadge" class="text-[10px] font-bold uppercase bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-full">Gramínea</span>
+                    <h3 id="modalTitle" class="text-2xl font-bold text-slate-900 dark:text-white mt-1">Pasto Guinea Común</h3>
+                    <p id="modalScientific" class="text-xs italic text-slate-500 dark:text-slate-400">Megathyrsus maximus</p>
+                </div>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 dark:hover:text-white text-lg p-2">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div id="modalBody" class="space-y-4 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+                <!-- JS populated -->
+            </div>
+
+            <div class="pt-4 border-t border-slate-200 dark:border-slate-700 flex justify-end">
+                <button onclick="closeModal()" class="bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-800 dark:text-white font-semibold py-2 px-5 rounded-xl text-xs transition">
+                    Cerrar Ficha
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- HUmedad / Ventana Emergente de la Ficha Completa con Imagen -->
+<div id="ModalHumedad" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 max-w-xl w-full max-h-[90vh] overflow-y-auto border border-slate-200 dark:border-slate-700 shadow-2xl space-y-6">
+        
+        <!-- Cabecera del Modal -->
+        <div class="flex justify-between items-start border-b border-slate-200 dark:border-slate-700 pb-4">
+            <div>
+                <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">Ficha Técnica Detallada</span>
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-0.5">Agave (Maguey)</h2>
+            </div>
+            <button onclick="cerrarModalHumedad()" class="text-slate-400 hover:text-slate-600 dark:hover:text-white p-2">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+
+      
+      <!-- Imagen ajustada para mostrarse completa -->
+<div class="overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-center p-2">
+    <img src="Foto1.jpeg" alt="Muestra de agave de Juventino Rosas" class="w-full max-h-[400px] object-contain mx-auto">
+    <p class="text-xs text-slate-500 dark:text-slate-400 p-2 italic">Figura. Registro experimental de la muestra de agave (Juventino Rosas, Gto.).</p>
+</div>
+
+        <!-- Información Completa -->
+        <div class="space-y-3 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+            <p><strong>Fórmula:</strong><em>(Gramos de humedad/Gramos de muestra)(100)=%Humedad</em></p>  
+            <div class="bg-slate-50 dark:bg-slate-700/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-600 space-y-1">
+                <strong class="text-emerald-700 dark:text-emerald-400 block mb-1">Resultados AQP:</strong>
+                <ul class="list-disc list-inside space-y-1 text-slate-600 dark:text-slate-300">
+                    <li><strong>Caja 1:</strong></li>
+                    %Humedad: 6.3442
+                    <li><strong>Caja 2:</strong></li>
+                    %Humedad: 6.3397
+                    <li><strong>x̄ %Humedad: 6.3419</strong></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Botón de Cerrar Modal -->
+        <div class="text-right pt-2">
+            <button onclick="cerrarModalHumedad()" class="px-5 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs sm:text-sm font-medium transition shadow-sm">
+                Cerrar Ficha
+            </button>
+        </div>
+    </div>
+</div>
+    <!-- Cenizas / Ventana Emergente de la Ficha Completa con Imagen -->
+<div id="ModalCenizas" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 max-w-xl w-full max-h-[90vh] overflow-y-auto border border-slate-200 dark:border-slate-700 shadow-2xl space-y-6">
+        
+        <!-- Cabecera del Modal -->
+        <div class="flex justify-between items-start border-b border-slate-200 dark:border-slate-700 pb-4">
+            <div>
+                <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">Ficha Técnica Detallada</span>
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-0.5">Agave (Maguey)</h2>
+            </div>
+            <button onclick="cerrarModalCenizas()" class="text-slate-400 hover:text-slate-600 dark:hover:text-white p-2">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+
+     
+      <!-- Imagen ajustada para mostrarse completa -->
+<div class="overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-center p-2">
+    <img src="Foto1.jpeg" alt="Muestra de agave de Juventino Rosas" class="w-full max-h-[400px] object-contain mx-auto">
+    <p class="text-xs text-slate-500 dark:text-slate-400 p-2 italic">Figura. Registro experimental de la muestra de agave (Juventino Rosas, Gto.).</p>
+</div>
+
+        <!-- Información Completa -->
+        <div class="space-y-3 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+            <p><strong>Fórmula:</strong><em>(Peso de cenizas/Peso de cenizas)(100)=%Cenizas</em></p>  
+            <div class="bg-slate-50 dark:bg-slate-700/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-600 space-y-1">
+                <strong class="text-emerald-700 dark:text-emerald-400 block mb-1">Resultados AQP:</strong>
+                <ul class="list-disc list-inside space-y-1 text-slate-600 dark:text-slate-300">
+                    <li><strong>Crisol 52:</strong></li>
+                    %Cenizas: 10.5840
+                    <li><strong>Crisol G4:</strong></li>
+                    %Cenizas: 10.8663
+                    <li><strong>x̄ %Cenizas: 10.7251</strong></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Botón de Cerrar Modal -->
+        <div class="text-right pt-2">
+            <button onclick="cerrarModalCenizas()" class="px-5 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs sm:text-sm font-medium transition shadow-sm">
+                Cerrar Ficha
+            </button>
+        </div>
+    </div>
+</div>
+    <!-- FDN / Ventana Emergente de la Ficha Completa con Imagen -->
+<div id="ModalFDN" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 max-w-xl w-full max-h-[90vh] overflow-y-auto border border-slate-200 dark:border-slate-700 shadow-2xl space-y-6">
+        
+        <!-- Cabecera del Modal -->
+        <div class="flex justify-between items-start border-b border-slate-200 dark:border-slate-700 pb-4">
+            <div>
+                <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">Ficha Técnica Detallada</span>
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-0.5">Agave (Maguey)</h2>
+            </div>
+            <button onclick="cerrarModalFDN()" class="text-slate-400 hover:text-slate-600 dark:hover:text-white p-2">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+
+     
+      <!-- Imagen ajustada para mostrarse completa -->
+<div class="overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-center p-2">
+    <img src="Foto2.jpeg" alt="Muestra de agave de Juventino Rosas" class="w-full max-h-[400px] object-contain mx-auto">
+<img src="Foto3.jpeg" alt="Muestra de agave de Juventino Rosas" class="w-full max-h-[400px] object-contain mx-auto">
+    <p class="text-xs text-slate-500 dark:text-slate-400 p-2 italic">Figura. Registro experimental de la muestra de agave (Juventino Rosas, Gto.).</p>
+</div>
+
+        <!-- Información Completa -->
+        <div class="space-y-3 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+            <p><strong>Fórmula:</strong><em>(Gramos de humedad/Gramos de muestra)(100)=%Humedad</em></p>  
+            <div class="bg-slate-50 dark:bg-slate-700/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-600 space-y-1">
+                <strong class="text-emerald-700 dark:text-emerald-400 block mb-1">Resultados AQP:</strong>
+                <ul class="list-disc list-inside space-y-1 text-slate-600 dark:text-slate-300">
+                    <li><strong>Cartucho IV:</strong></li>
+                    %FDN: 29.1109
+                    <li><strong>Cartucho II:</strong></li>
+                    %FDN: 23.7853
+                    <li><strong>x̄ %FDN: 26.4481</strong></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Botón de Cerrar Modal -->
+        <div class="text-right pt-2">
+            <button onclick="cerrarModalFDN()" class="px-5 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs sm:text-sm font-medium transition shadow-sm">
+                Cerrar Ficha
+            </button>
+        </div>
+    </div>
+</div>
+    <!-- PC / Ventana Emergente de la Ficha Completa con Imagen -->
+<div id="ModalPC" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 max-w-xl w-full max-h-[90vh] overflow-y-auto border border-slate-200 dark:border-slate-700 shadow-2xl space-y-6">
+        
+        <!-- Cabecera del Modal -->
+        <div class="flex justify-between items-start border-b border-slate-200 dark:border-slate-700 pb-4">
+            <div>
+                <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">Ficha Técnica Detallada</span>
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-0.5">Agave (Maguey)</h2>
+            </div>
+            <button onclick="cerrarModalPC()" class="text-slate-400 hover:text-slate-600 dark:hover:text-white p-2">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+
+     
+      <!-- Imagen ajustada para mostrarse completa -->
+<div class="overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-center p-2">
+    <img src="Foto2.jpeg" alt="Muestra de agave de Juventino Rosas" class="w-full max-h-[400px] object-contain mx-auto">
+<img src="Foto3.jpeg" alt="Muestra de agave de Juventino Rosas" class="w-full max-h-[400px] object-contain mx-auto">
+    <p class="text-xs text-slate-500 dark:text-slate-400 p-2 italic">Figura. Registro experimental de la muestra de agave (Juventino Rosas, Gto.).</p>
+</div>
+
+        <!-- Información Completa -->
+        <div class="space-y-3 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+            <p><strong>Fórmula 1:</strong><em>(((ml.HCl gastados)(N.HCl)(0.014))/(Gramos de la muestra))(100)=%Nitrógeno</em></p>                          
+            <p><strong>Fórmula 2:</strong><em>(%Nitrógeno)(6.25)=%Proteína Cruda</em></p>
+            <div class="bg-slate-50 dark:bg-slate-700/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-600 space-y-1">
+                <strong class="text-emerald-700 dark:text-emerald-400 block mb-1">Resultados AQP:</strong>
+                <ul class="list-disc list-inside space-y-1 text-slate-600 dark:text-slate-300">
+                    <li><strong>Papel copia 1:</strong></li>
+                    %Nitrógeno: 0.9126
+                    %PC: 5.7037
+                    <li><strong>Papel copia 2:</strong></li>
+                    %Nitrógeno: 0.7901
+                    %PC: 4.9381
+                    <li><strong>x̄ %PC: 5.3214</strong></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Botón de Cerrar Modal -->
+        <div class="text-right pt-2">
+            <button onclick="cerrarModalPC()" class="px-5 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs sm:text-sm font-medium transition shadow-sm">
+                Cerrar Ficha
+            </button>
+        </div>
+    </div>
+</div>
+    <!-- FDN / Ventana Emergente de la Ficha Completa con Imagen -->
+<div id="ModalFDN" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 max-w-xl w-full max-h-[90vh] overflow-y-auto border border-slate-200 dark:border-slate-700 shadow-2xl space-y-6">
+        
+        <!-- Cabecera del Modal -->
+        <div class="flex justify-between items-start border-b border-slate-200 dark:border-slate-700 pb-4">
+            <div>
+                <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">Ficha Técnica Detallada</span>
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-0.5">Agave (Maguey)</h2>
+            </div>
+            <button onclick="cerrarModalFDN()" class="text-slate-400 hover:text-slate-600 dark:hover:text-white p-2">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+
+     
+      <!-- Imagen ajustada para mostrarse completa -->
+<div class="overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-center p-2">
+    <img src="Foto2.jpeg" alt="Muestra de agave de Juventino Rosas" class="w-full max-h-[400px] object-contain mx-auto">
+<img src="Foto3.jpeg" alt="Muestra de agave de Juventino Rosas" class="w-full max-h-[400px] object-contain mx-auto">
+    <p class="text-xs text-slate-500 dark:text-slate-400 p-2 italic">Figura. Registro experimental de la muestra de agave (Juventino Rosas, Gto.).</p>
+</div>
+
+        <!-- Información Completa -->
+        <div class="space-y-3 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+            <p><strong>Fórmula:</strong><em>(Gramos de humedad/Gramos de muestra)(100)=%Humedad</em></p>  
+            <div class="bg-slate-50 dark:bg-slate-700/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-600 space-y-1">
+                <strong class="text-emerald-700 dark:text-emerald-400 block mb-1">Resultados AQP:</strong>
+                <ul class="list-disc list-inside space-y-1 text-slate-600 dark:text-slate-300">
+                    <li><strong>cartucho IV:</strong></li>
+                    %FDN: 29.1109g
+                    <li><strong>Crisol G4:</strong></li>
+                    %FDN: 23.7853g
+                    <li><strong>x̄ %FDN: 26.4481g</strong></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Botón de Cerrar Modal -->
+        <div class="text-right pt-2">
+            <button onclick="cerrarModalFDN()" class="px-5 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs sm:text-sm font-medium transition shadow-sm">
+                Cerrar Ficha
+            </button>
+        </div>
+    </div>
+</div>
+    <!-- FDN / Ventana Emergente de la Ficha Completa con Imagen -->
+<div id="ModalFDN" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 max-w-xl w-full max-h-[90vh] overflow-y-auto border border-slate-200 dark:border-slate-700 shadow-2xl space-y-6">
+        
+        <!-- Cabecera del Modal -->
+        <div class="flex justify-between items-start border-b border-slate-200 dark:border-slate-700 pb-4">
+            <div>
+                <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">Ficha Técnica Detallada</span>
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-0.5">Agave (Maguey)</h2>
+            </div>
+            <button onclick="cerrarModalFDN()" class="text-slate-400 hover:text-slate-600 dark:hover:text-white p-2">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+
+     
+      <!-- Imagen ajustada para mostrarse completa -->
+<div class="overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-center p-2">
+    <img src="Foto2.jpeg" alt="Muestra de agave de Juventino Rosas" class="w-full max-h-[400px] object-contain mx-auto">
+<img src="Foto3.jpeg" alt="Muestra de agave de Juventino Rosas" class="w-full max-h-[400px] object-contain mx-auto">
+    <p class="text-xs text-slate-500 dark:text-slate-400 p-2 italic">Figura. Registro experimental de la muestra de agave (Juventino Rosas, Gto.).</p>
+</div>
+
+        <!-- Información Completa -->
+        <div class="space-y-3 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+            <p><strong>Fórmula:</strong><em>(Gramos de humedad/Gramos de muestra)(100)=%Humedad</em></p>  
+            <div class="bg-slate-50 dark:bg-slate-700/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-600 space-y-1">
+                <strong class="text-emerald-700 dark:text-emerald-400 block mb-1">Resultados AQP:</strong>
+                <ul class="list-disc list-inside space-y-1 text-slate-600 dark:text-slate-300">
+                    <li><strong>cartucho IV:</strong></li>
+                    %FDN: 29.1109g
+                    <li><strong>Crisol G4:</strong></li>
+                    %FDN: 23.7853g
+                    <li><strong>x̄ %FDN: 26.4481g</strong></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Botón de Cerrar Modal -->
+        <div class="text-right pt-2">
+            <button onclick="cerrarModalFDN()" class="px-5 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs sm:text-sm font-medium transition shadow-sm">
+                Cerrar Ficha
+            </button>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 py-6 text-center text-xs text-slate-500 dark:text-slate-400">
+        <p>Alimentos y Forrajes • FES Cuautitlán UNAM • Sistema Enriqueta García & NRC</p>
+    </footer>
+
+  
+    <!-- JavaScript Application Logic -->
+    <script>
+ // Función interactiva para calcular el clima en JavaScript
+        function ejecutarCalculoClima() {
+            const tempStr = document.getElementById('inputTemp').value;
+            const precipStr = document.getElementById('inputPrecip').value;
+
+            const datosTemp = tempStr.split(',').map(Number);
+            const datosPrecip = precipStr.split(',').map(Number);
+
+            if (datosTemp.length !== 12 || datosPrecip.length !== 12 || datosTemp.some(isNaN) || datosPrecip.some(isNaN)) {
+                alert("Por favor ingresa exactamente 12 valores numéricos separados por comas.");
+                return;
+            }
+
+            const ta = datosTemp.reduce((a, b) => a + b, 0) / 12.0;
+            const pa = datosPrecip.reduce((a, b) => a + b, 0);
+            const tempMesFrio = Math.min(...datosTemp);
+            const tempMesCaliente = Math.max(...datosTemp);
+            const pT = ta > 0 ? pa / ta : 0;
+
+            let resultado = "";
+
+            if (tempMesFrio > 18.0) {
+                const mesMasSeco = Math.min(...datosPrecip);
+                let subtipo = "Aw0";
+                if (mesMasSeco > 60) subtipo = "Af(m)";
+                else if (pT > 55.3) subtipo = "Aw2";
+                else if (pT >= 43.2) subtipo = "Aw1";
+                resultado = `Grupo A - Clima Cálido: ${subtipo}`;
+            } else if (tempMesFrio >= -3.0 && tempMesFrio <= 18.0 && tempMesCaliente >= 6.5) {
+                let prefijo = "C";
+                if (ta > 18.0 && ta <= 22.0) prefijo = "(A)C";
+                else if (ta >= 12.0 && ta <= 18.0) prefijo = "C";
+                else if (ta >= 5.0 && ta < 12.0) prefijo = "C(b')";
+
+                const mesMasSeco = Math.min(...datosPrecip);
+                let subtipo = "C(w0)";
+                if (mesMasSeco > 40) subtipo = "C(fm)";
+                else if (pT > 55.0) subtipo = "C(w2)";
+                else if (pT >= 43.2) subtipo = "C(w1)";
+
+                resultado = `Grupo C - Templado/Semicálido: ${prefijo} - ${subtipo}`;
+            } else {
+                if (pT > 22.9) {
+                    resultado = `Grupo B - Clima Seco Estepario (BS)`;
+                } else {
+                    resultado = `Grupo B - Clima Muy Árido / Desértico (BW)`;
+                }
+            }
+
+            const box = document.getElementById('resultadoClimaBox');
+            const detalle = document.getElementById('detalleCalculo');
+            box.classList.remove('hidden');
+            detalle.innerHTML = `
+                 Temperatura Media Anual (TA): <strong>${ta.toFixed(2)} °C</strong><br>
+                 Precipitación Anual (PA): <strong>${pa.toFixed(2)} mm</strong><br>
+                 Índice P/T (Lang): <strong>${pT.toFixed(2)}</strong><br>
+                 Temp. Mes Más Frío: <strong>${tempMesFrio.toFixed(2)} °C</strong><br><br>
+                ✨ <strong>Clasificación Final:</strong> ${resultado}
+            `;
+        }
+     
+    // State validation data
+        const stateData = {
+            veracruz: { valid: true, text: "SÍ pertenece a Clima A. Extensa Llanura Costera del Golfo con regímenes Af, Am y Aw." },
+            tabasco: { valid: true, text: "SÍ pertenece a Clima A. Cobertura total tropical húmeda (Af, Am)." },
+            chiapas: { valid: true, text: "SÍ pertenece a Clima A. Depresión Central y Costa del Pacífico (Aw, Am, Af)." },
+            yucatan: { valid: true, text: "SÍ pertenece a Clima A. Península de Yucatán predominantemente Aw." },
+            quintana_roo: { valid: true, text: "SÍ pertenece a Clima A. Cobertura total tropical subhúmeda/húmeda (Aw, Am)." },
+            campeche: { valid: true, text: "SÍ pertenece a Clima A. Península de Yucatán subhúmeda (Aw, Am)." },
+            oaxaca: { valid: true, text: "SÍ pertenece a Clima A. Franja Costera del Pacífico e Istmo de Tehuantepec (Aw)." },
+            guerrero: { valid: true, text: "SÍ pertenece a Clima A. Costa e influencia de la Cuenca del Balsas (Aw)." },
+            michoacan: { valid: true, text: "SÍ pertenece a Clima A. Tierra Caliente y Costa del Pacífico (Aw)." },
+            colima: { valid: true, text: "SÍ pertenece a Clima A. Planicies costeras tropicales (Aw)." },
+            jalisco: { valid: true, text: "SÍ pertenece a Clima A. Franja costera y valles bajos del sur (Aw)." },
+            nayarit: { valid: true, text: "SÍ pertenece a Clima A. Llanura costera del Pacífico (Aw)." },
+            sinaloa: { valid: true, text: "SÍ pertenece a Clima A (Porción sur por debajo del paralelo 24° N, Aw)." },
+            tamaulipas: { valid: true, text: "SÍ pertenece a Clima A (Porción sur de la Llanura Costera del Golfo, Aw)." },
+            puebla: { valid: true, text: "SÍ pertenece a Clima A (Únicamente en valles bajos del sur en la Cuenca del Balsas)." },
+            sonora: { valid: false, text: "NO pertenece a Clima A. Dominado por climas Secos y Muy Secos (BS / BW)." },
+            san_luis: { valid: false, text: "NO pertenece a Clima A en su mayoría. Predominan climas Secos (BS) y Templados (C)." },
+            hidalgo: { valid: false, text: "NO pertenece a Clima A. Predominan climas Templados (C) y Secos (BS)." },
+            queretaro: { valid: false, text: "NO pertenece a Clima A. Predominan climas Templados (C) y Secos (BS)." }
+        };
+
+        function validateState() {
+            const val = document.getElementById('stateSelect').value;
+            const resDiv = document.getElementById('stateResult');
+            if (!val) {
+                resDiv.className = "w-full sm:flex-1 p-3 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-600";
+                resDiv.innerText = "Selecciona un estado para ver su estatus de Clima A y sus subregiones.";
+                return;
+            }
+
+            const info = stateData[val];
+            if (info.valid) {
+                resDiv.className = "w-full sm:flex-1 p-3 rounded-xl text-xs font-semibold bg-emerald-100 dark:bg-emerald-900/60 text-emerald-900 dark:text-emerald-200 border border-emerald-300 dark:border-emerald-700";
+            } else {
+                resDiv.className = "w-full sm:flex-1 p-3 rounded-xl text-xs font-semibold bg-rose-100 dark:bg-rose-900/60 text-rose-900 dark:text-rose-200 border border-rose-300 dark:border-rose-700";
+            }
+            resDiv.innerText = info.text;
+        }
+
+// Función para abrir la ventana emergente de la ficha del agave (humedad)
+function abrirModalHumedad() {
+    document.getElementById('ModalHumedad').classList.remove('hidden');
+}
+
+// Función para cerrar la ventana emergente
+function cerrarModalHumedad() {
+    document.getElementById('ModalHumedad').classList.add('hidden');
+}
+// Función para abrir la ventana emergente de la ficha del agave (cenizas)
+function abrirModalCenizas() {
+    document.getElementById('ModalCenizas').classList.remove('hidden');
+}
+
+// Función para cerrar la ventana emergente
+function cerrarModalCenizas() {
+    document.getElementById('ModalCenizas').classList.add('hidden');
+}
+
+// Función para abrir la ventana emergente de la ficha del agave (FDN)
+function abrirModalFDN() {
+    document.getElementById('ModalFDN').classList.remove('hidden');
+}
+
+// Función para cerrar la ventana emergente
+function cerrarModalFDN() {
+    document.getElementById('ModalFDN').classList.add('hidden');
+}
+// Función para abrir la ventana emergente de la ficha del agave (PC)
+function abrirModalPC() {
+    document.getElementById('ModalPC').classList.remove('hidden');
+}
+
+// Función para cerrar la ventana emergente
+function cerrarModalPC() {
+    document.getElementById('ModalPC').classList.add('hidden');
+}
+// Función para abrir la ventana emergente de la ficha del agave (FDN)
+function abrirModalFDN() {
+    document.getElementById('ModalFDN').classList.remove('hidden');
+}
+
+// Función para cerrar la ventana emergente
+function cerrarModalFDN() {
+    document.getElementById('ModalFDN').classList.add('hidden');
+}
+// Función para abrir la ventana emergente de la ficha del agave (FDN)
+function abrirModalFDN() {
+    document.getElementById('ModalFDN').classList.remove('hidden');
+}
+
+// Función para cerrar la ventana emergente
+function cerrarModalFDN() {
+    document.getElementById('ModalFDN').classList.add('hidden');
+}
+
+        function openModal(key) {
+            const data = forageDetailData[key];
+            if (!data) return;
+            document.getElementById('modalTitle').innerText = data.title;
+            document.getElementById('modalScientific').innerText = data.scientific;
+            document.getElementById('modalBadge').innerText = data.badge;
+            document.getElementById('modalBody').innerHTML = data.html;
+            document.getElementById('forageModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('forageModal').classList.add('hidden');
+        }
+                // Datos experimentales con los porcentajes reales de Humedad y Materia Seca
+        const tableDataset = [
+            { 
+                name: "Agave salmiana (Equipo 2)", 
+                h: 6.3419,       // % Humedad experimental
+                ms: 93.6581,     // % Materia Seca experimental real
+                pcVal: 11.0000, pcBase: 'bh',  // Proteína (determinado con humedad -> se convierte)
+                cenVal: 10.7251, cenBase: 'bh',// Cenizas (determinado con humedad -> se convierte)
+                eeVal: 2.0000, eeBase: 'bs',   // Extracto Etéreo (determinado en seco)
+                fcVal: 32.0000, fcBase: 'bs',  // Fibra Cruda (determinado en seco)
+                elnVal: 45.5000, elnBase: 'bh',// ELN por diferencia
+                ref: "/" 
+            },
+            { name: "Pasto Insurgente (U. brizantha)", h: 75.5000, ms: 24.5000, pcVal: 8.5000, pcBase: 'bh', cenVal: 8.5000, cenBase: 'bh', eeVal: 1.8000, eeBase: 'bs', fcVal: 34.0000, fcBase: 'bs', elnVal: 47.2000, elnBase: 'bh', ref: "Reyes et al. (2023)" },
+            { name: "Leucaena (L. leucocephala)", h: 72.0000, ms: 28.0000, pcVal: 22.5000, pcBase: 'bh', cenVal: 9.0000, cenBase: 'bh', eeVal: 2.5000, eeBase: 'bs', fcVal: 22.0000, fcBase: 'bs', elnVal: 44.0000, elnBase: 'bh', ref: "Elizondo-Salazar (2020)" },
+            { name: "Estrella de África (C. nlemfuensis)", h: 79.0000, ms: 21.0000, pcVal: 9.5000, pcBase: 'bh', cenVal: 8.8000, cenBase: 'bh', eeVal: 1.6000, eeBase: 'bs', fcVal: 31.5000, fcBase: 'bs', elnVal: 48.6000, elnBase: 'bh', ref: "Shimada (2018)" },
+            { name: "Matarratón (G. sepium)", h: 75.0000, ms: 25.0000, pcVal: 21.0000, pcBase: 'bh', cenVal: 10.2000, cenBase: 'bh', eeVal: 2.8000, eeBase: 'bs', fcVal: 20.5000, fcBase: 'bs', elnVal: 45.5000, elnBase: 'bh', ref: "Mendoza et al. (2022)" },
+            { name: "Cacahuatillo (A. pintoi)", h: 80.0000, ms: 20.0000, pcVal: 18.5000, pcBase: 'bh', cenVal: 9.0000, cenBase: 'bh', eeVal: 2.2000, eeBase: 'bs', fcVal: 24.0000, fcBase: 'bs', elnVal: 46.3000, elnBase: 'bh', ref: "Weiss (2022)" }
+        ];
+
+        function populateTable(isDry = true) {
+            const tbody = document.getElementById('bromatologicalTableBody');
+            tbody.innerHTML = '';
+
+            tableDataset.forEach(row => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50 dark:hover:bg-slate-700/50 transition";
+
+// Definir los valores de Humedad y Materia Seca según la base seleccionada
+const msFin = isDry ? 100.0000 : row.ms;
+const hFin = isDry ? 0.0000 : row.h;  // En Base Seca la humedad es 0; en Base Húmeda es el valor real (row.h)
+
+
+                // Función que aplica rigurosamente la regla de 3 analítica
+                function aplicarReglaDeTres(val, baseNativa) {
+                    if (isDry) {
+                        // Queremos ver Base Seca (BS): si el dato nativo es BH, se convierte a BS
+                        if (baseNativa === 'bh') {
+                            return (val * 100.0) / row.ms; 
+                        } else {
+                            return val; // Ya está en BS
+                        }
+                    } else {
+                        // Queremos ver Base Húmeda (BH): si el dato nativo es BS, se convierte a BH
+                        if (baseNativa === 'bs') {
+                            return (val * row.ms) / 100.0; 
+                        } else {
+                            return val; // Ya está en BH
+                        }
+                    }
+                }
+
+                const pcFin = aplicarReglaDeTres(row.pcVal, row.pcBase);
+                const cenFin = aplicarReglaDeTres(row.cenVal, row.cenBase);
+                const eeFin = aplicarReglaDeTres(row.eeVal, row.eeBase);
+                const fcFin = aplicarReglaDeTres(row.fcVal, row.fcBase);
+                const elnFin = aplicarReglaDeTres(row.elnVal, row.elnBase);
+
+                // Clases dinámicas para resaltar en verde únicamente la columna activa según la base
+                const claseHumedad = !isDry ? "font-semibold text-emerald-700 dark:text-emerald-400" : "text-xs";
+                const claseMateriaSeca = isDry ? "font-semibold text-emerald-700 dark:text-emerald-400" : "text-xs";
+
+                tr.innerHTML = `
+                    <td class="p-3.5 font-bold text-slate-900 dark:text-white">${row.name}</td>
+                    <td class="p-3.5 ${claseHumedad}">${hFin.toFixed(4)}%</td>
+                    <td class="p-3.5 ${claseMateriaSeca}">${msFin.toFixed(4)}%</td>
+                    <td class="p-3.5">${pcFin.toFixed(4)}%</td>
+                    <td class="p-3.5">${eeFin.toFixed(4)}%</td>
+                    <td class="p-3.5">${fcFin.toFixed(4)}%</td>
+                    <td class="p-3.5">${cenFin.toFixed(4)}%</td>
+                    <td class="p-3.5">${elnFin.toFixed(4)}%</td>
+                    <td class="p-3.5 text-slate-500 dark:text-slate-400">${row.ref}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+        function toggleTableBase() {
+            const val = document.getElementById('baseToggle').value;
+            populateTable(val === 'dry');
+        }
+
+        // Filtering Cards
+        function filterCategory(cat) {
+            document.querySelectorAll('.filter-btn').forEach(b => {
+                b.classList.remove('bg-emerald-700', 'text-white');
+                b.classList.add('bg-slate-100', 'dark:bg-slate-700', 'text-slate-700', 'dark:text-slate-200');
+            });
+
+            const activeBtn = document.getElementById('filter-' + cat);
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-slate-100', 'dark:bg-slate-700', 'text-slate-700', 'dark:text-slate-200');
+                activeBtn.classList.add('bg-emerald-700', 'text-white');
+            }
+
+            const cards = document.querySelectorAll('.forage-card');
+            cards.forEach(card => {
+                if (cat === 'all' || card.classList.contains(cat)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function filterCards() {
+            const q = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.forage-card');
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                if (text.includes(q)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Navigation Tabs Switcher
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => {
+                b.classList.remove('bg-brand-700', 'text-white', 'shadow-sm');
+                b.classList.add('text-emerald-200', 'hover:text-white', 'hover:bg-brand-800');
+            });
+
+            document.getElementById(tabId).classList.add('active');
+            const btn = document.getElementById('btn-' + tabId);
+            if (btn) {
+                btn.classList.remove('text-emerald-200', 'hover:text-white', 'hover:bg-brand-800');
+                btn.classList.add('bg-brand-700', 'text-white', 'shadow-sm');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        // Citation Clipboard Copy
+        function copyCitation(btn) {
+            const text = btn.getAttribute('data-citation');
+            const tempInput = document.createElement('textarea');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            btn.innerHTML = '<i class="fa-solid fa-check text-emerald-600"></i>';
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fa-regular fa-copy"></i>';
+            }, 2000);
+        }
+
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+        }
+
+        // Initialize table on load
+        window.onload = function() {
+            populateTable(true);
+        };
+    </script>
+</body>
+</html>
