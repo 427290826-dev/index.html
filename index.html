@@ -73,10 +73,10 @@
                     <i class="fa-solid fa-cloud-sun font-normal"></i> Marco Teórico
                 </button>
                 <button onclick="switchTab('metodologia')" id="btn-metodologia" class="nav-btn px-3 py-2 rounded-xl transition-all text-emerald-200 hover:text-white hover:bg-brand-800 flex items-center gap-1.5">
-                    <i class="fa-solid fa-vial-virus"></i> Metodología AQP
+                    <i class="fa-solid fa-vial-virus"></i> Metodología
                 </button>
                 <button onclick="switchTab('resultados')" id="btn-fichas" class="nav-btn px-3 py-2 rounded-xl transition-all text-emerald-200 hover:text-white hover:bg-brand-800 flex items-center gap-1.5">
-                    <i class="fa-solid fa-book-bookmark"></i> Resultados AQP
+                    <i class="fa-solid fa-book-bookmark"></i> Resultados
                 </button>
                 <button onclick="switchTab('comparativa')" id="btn-comparativa" class="nav-btn px-3 py-2 rounded-xl transition-all text-emerald-200 hover:text-white hover:bg-brand-800 flex items-center gap-1.5">
                     <i class="fa-solid fa-table-list"></i> Bromatología NRC
@@ -360,7 +360,7 @@
                 <!-- Cabecera con Título Limpio a la Izquierda -->
                 <div class="border-b border-slate-200 dark:border-slate-700 pb-4">
                     <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">AQP / FDN</span>
-                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-0.5">Análisis de Weende</h2>
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-0.5">Análisis de Weende / Van Soest</h2>
                 </div>
 
                 <!-- Cards Grid Único -->
@@ -386,10 +386,10 @@
         <p><strong>Peso con muestra:</strong> 21.6978g</p>
         <p><strong>Peso de la muestra:</strong> 2.0160g</p>
         <p><strong>Tratamiento:</strong> 21.5699g</p>
-        <p><strong>Caja 2</strong></p>
+        <p><strong>Caja 2:</strong></p>
         <p><strong>Peso sin muestra:</strong> 18.9318g</p>
         <p><strong>Peso con muestra:</strong> 20.9319g</p>
-        <p><strong>Peso de la muestra:</strong>2.0001g</p>
+        <p><strong>Peso de la muestra:</strong> 2.0001g</p>
         <p><strong>Tratamiento:</strong> 20.8051g</p>
     </div>
 
@@ -455,7 +455,7 @@
         <p><strong>Peso sin muestra:</strong> 0.4366g</p>
         <p><strong>Peso con muestra:</strong> 1.4410g</p>
         <p><strong>Peso sin muestra (filtro):</strong> 1.7440g</p>
-        <p><strong>Tratamiento (filtro)</strong> 1.9829g</p>
+        <p><strong>Tratamiento (filtro):</strong> 1.9829g</p>
     </div>
     <!-- Botón para abrir el modal con la imagen -->
     <div class="pt-2">
@@ -483,11 +483,11 @@
         <p><strong>Papel copia 1:</strong></p>        
         <p><strong>Peso sin muestra:</strong> 0.4259g</p>
         <p><strong>Peso con muestra:</strong> 1.4764g</p>
-        <p><strong>ml.HCl gastados</strong> 6.4ml</p>
-        <p><strong>Papel copia 2</strong></p>
+        <p><strong>ml.HCl gastados:</strong> 6.4ml</p>
+        <p><strong>Papel copia 2:</strong></p>
         <p><strong>Peso sin muestra:</strong> 0.4344g</p>
         <p><strong>Peso con muestra:</strong> 1.4392g</p>
-        <p><strong>ml.HCl gastados:</strong>5.3ml</p>
+        <p><strong>ml.HCl gastados:</strong> 5.3ml</p>
     </div>
 
     <!-- Botón para abrir el modal con la imagen -->
@@ -513,19 +513,19 @@
     </div>
 
     <div class="space-y-1.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 border-t border-slate-100 dark:border-slate-700/60 pt-3">
-        <p><strong>Caja 1:</strong></p>        
-        <p><strong>Peso sin muestra:</strong> 19.6818g</p>
-        <p><strong>Peso con muestra:</strong> 21.6978g</p>
-        <p><strong>Humedad:</strong> 21.569g</p>
-        <p><strong>Caja 2</strong></p>
-        <p><strong>Peso sin muestra:</strong> 18.9318g</p>
-        <p><strong>Peso con muestra:</strong> 20.9319g</p>
-        <p><strong>Humedad:</strong>20.805ǵ</p>
+        <p><strong>Cartucho DI:</strong></p>        
+        <p><strong>Peso sin muestra:</strong> 2.7859g</p>
+        <p><strong>Peso con muestra:</strong> 2.6212g</p>
+        <p><strong>Tratamiento:</strong> g</p>
+        <p><strong>Caja DL:</strong></p>
+        <p><strong>Peso sin muestra:</strong> 2.8729g</p>
+        <p><strong>Peso con muestra:</strong> 4.7360g</p>
+        <p><strong>Tratamiento:</strong>g</p>
     </div>
 
     <!-- Botón para abrir el modal con la imagen -->
     <div class="pt-2">
-                            <button onclick="abrirModalAgave()"class="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-semibold py-2 px-3 rounded-xl text-xs transition flex items-center justify-center gap-2">
+                            <button onclick="abrirModalEE()"class="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-semibold py-2 px-3 rounded-xl text-xs transition flex items-center justify-center gap-2">
                             <i class="fa-solid fa-file-lines"></i> Ver Ficha Completa
         </button>
     </div>
@@ -834,7 +834,7 @@
 
         <!-- Información Completa -->
         <div class="space-y-3 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
-            <p><strong>Fórmula:</strong><em>(Peso de cenizas/Peso de cenizas)(100)=%Cenizas</em></p>  
+            <p><strong>Fórmula:</strong><em>(Peso de cenizas/Peso de muestra)(100)=%Cenizas</em></p>  
             <div class="bg-slate-50 dark:bg-slate-700/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-600 space-y-1">
                 <strong class="text-emerald-700 dark:text-emerald-400 block mb-1">Resultados AQP:</strong>
                 <ul class="list-disc list-inside space-y-1 text-slate-600 dark:text-slate-300">
@@ -874,15 +874,15 @@
       <!-- Imagen ajustada para mostrarse completa -->
 <div class="overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-center p-2">
     <img src="Foto2.jpeg" alt="Muestra de agave de Juventino Rosas" class="w-full max-h-[400px] object-contain mx-auto">
-<img src="Foto3.jpeg" alt="Muestra de agave de Juventino Rosas" class="w-full max-h-[400px] object-contain mx-auto">
+    <img src="Foto3.jpeg" alt="Muestra de agave de Juventino Rosas" class="w-full max-h-[400px] object-contain mx-auto">
     <p class="text-xs text-slate-500 dark:text-slate-400 p-2 italic">Figura. Registro experimental de la muestra de agave (Juventino Rosas, Gto.).</p>
 </div>
 
         <!-- Información Completa -->
         <div class="space-y-3 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
-            <p><strong>Fórmula:</strong><em>(Gramos de humedad/Gramos de muestra)(100)=%Humedad</em></p>  
+            <p><strong>Fórmula:</strong><em>(Gramos de FDN/Gramos de muestra)(100)=%FDN</em></p>  
             <div class="bg-slate-50 dark:bg-slate-700/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-600 space-y-1">
-                <strong class="text-emerald-700 dark:text-emerald-400 block mb-1">Resultados AQP:</strong>
+                <strong class="text-emerald-700 dark:text-emerald-400 block mb-1">Resultados Van Soest:</strong>
                 <ul class="list-disc list-inside space-y-1 text-slate-600 dark:text-slate-300">
                     <li><strong>Cartucho IV:</strong></li>
                     %FDN: 29.1109
@@ -919,8 +919,11 @@
      
       <!-- Imagen ajustada para mostrarse completa -->
 <div class="overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-center p-2">
-    <img src="Foto2.jpeg" alt="Muestra de agave de Juventino Rosas" class="w-full max-h-[400px] object-contain mx-auto">
-<img src="Foto3.jpeg" alt="Muestra de agave de Juventino Rosas" class="w-full max-h-[400px] object-contain mx-auto">
+    <img src="Foto4.jpeg" alt="Muestra de agave de Juventino Rosas" class="w-full max-h-[400px] object-contain mx-auto">
+    <img src="Foto5.jpeg" alt="Muestra de agave de Juventino Rosas" class="w-full max-h-[400px] object-contain mx-auto">
+    <img src="Foto6.jpeg" alt="Muestra de agave de Juventino Rosas" class="w-full max-h-[400px] object-contain mx-auto">
+    <img src="Foto7.jpeg" alt="Muestra de agave de Juventino Rosas" class="w-full max-h-[400px] object-contain mx-auto">
+    <img src="Foto8.jpeg" alt="Muestra de agave de Juventino Rosas" class="w-full max-h-[400px] object-contain mx-auto">
     <p class="text-xs text-slate-500 dark:text-slate-400 p-2 italic">Figura. Registro experimental de la muestra de agave (Juventino Rosas, Gto.).</p>
 </div>
 
@@ -950,8 +953,8 @@
         </div>
     </div>
 </div>
-    <!-- FDN / Ventana Emergente de la Ficha Completa con Imagen -->
-<div id="ModalFDN" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <!-- EE / Ventana Emergente de la Ficha Completa con Imagen -->
+<div id="ModalEE" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 max-w-xl w-full max-h-[90vh] overflow-y-auto border border-slate-200 dark:border-slate-700 shadow-2xl space-y-6">
         
         <!-- Cabecera del Modal -->
@@ -960,7 +963,7 @@
                 <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">Ficha Técnica Detallada</span>
                 <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-0.5">Agave (Maguey)</h2>
             </div>
-            <button onclick="cerrarModalFDN()" class="text-slate-400 hover:text-slate-600 dark:hover:text-white p-2">
+            <button onclick="cerrarModalEE()" class="text-slate-400 hover:text-slate-600 dark:hover:text-white p-2">
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
         </div>
@@ -968,29 +971,30 @@
      
       <!-- Imagen ajustada para mostrarse completa -->
 <div class="overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-center p-2">
-    <img src="Foto2.jpeg" alt="Muestra de agave de Juventino Rosas" class="w-full max-h-[400px] object-contain mx-auto">
-<img src="Foto3.jpeg" alt="Muestra de agave de Juventino Rosas" class="w-full max-h-[400px] object-contain mx-auto">
+    <img src="Foto9.jpeg" alt="Muestra de agave de Juventino Rosas" class="w-full max-h-[400px] object-contain mx-auto">
+    <img src="Foto10.jpeg" alt="Muestra de agave de Juventino Rosas" class="w-full max-h-[400px] object-contain mx-auto">
+    <img src="Foto11.jpeg" alt="Muestra de agave de Juventino Rosas" class="w-full max-h-[400px] object-contain mx-auto">
     <p class="text-xs text-slate-500 dark:text-slate-400 p-2 italic">Figura. Registro experimental de la muestra de agave (Juventino Rosas, Gto.).</p>
 </div>
 
         <!-- Información Completa -->
         <div class="space-y-3 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
-            <p><strong>Fórmula:</strong><em>(Gramos de humedad/Gramos de muestra)(100)=%Humedad</em></p>  
+            <p><strong>Fórmula:</strong><em>(Cartucho inicial-Cartucho tratado/Cartucho inicial-Peso del cartucho)(100)=%EE</em></p>  
             <div class="bg-slate-50 dark:bg-slate-700/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-600 space-y-1">
                 <strong class="text-emerald-700 dark:text-emerald-400 block mb-1">Resultados AQP:</strong>
                 <ul class="list-disc list-inside space-y-1 text-slate-600 dark:text-slate-300">
-                    <li><strong>cartucho IV:</strong></li>
-                    %FDN: 29.1109g
-                    <li><strong>Crisol G4:</strong></li>
-                    %FDN: 23.7853g
-                    <li><strong>x̄ %FDN: 26.4481g</strong></li>
+                    <li><strong>Cartucho DI:</strong></li>
+                    %EE: 
+                    <li><strong>Cartucho DL:</strong></li>
+                    %EE: 
+                    <li><strong>x̄ %EE: </strong></li>
                 </ul>
             </div>
         </div>
 
         <!-- Botón de Cerrar Modal -->
         <div class="text-right pt-2">
-            <button onclick="cerrarModalFDN()" class="px-5 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs sm:text-sm font-medium transition shadow-sm">
+            <button onclick="cerrarModalEE()" class="px-5 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs sm:text-sm font-medium transition shadow-sm">
                 Cerrar Ficha
             </button>
         </div>
@@ -1191,14 +1195,14 @@ function abrirModalPC() {
 function cerrarModalPC() {
     document.getElementById('ModalPC').classList.add('hidden');
 }
-// Función para abrir la ventana emergente de la ficha del agave (FDN)
-function abrirModalFDN() {
-    document.getElementById('ModalFDN').classList.remove('hidden');
+// Función para abrir la ventana emergente de la ficha del agave (EE)
+function abrirModalEE() {
+    document.getElementById('ModalEE').classList.remove('hidden');
 }
 
 // Función para cerrar la ventana emergente
-function cerrarModalFDN() {
-    document.getElementById('ModalFDN').classList.add('hidden');
+function cerrarModalEE() {
+    document.getElementById('ModalEE').classList.add('hidden');
 }
 // Función para abrir la ventana emergente de la ficha del agave (FDN)
 function abrirModalFDN() {
