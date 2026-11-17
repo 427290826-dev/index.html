@@ -610,8 +610,8 @@
                     <div class="flex items-center gap-2">
                         <span class="text-xs text-slate-500 dark:text-slate-400 font-semibold">Base de Cálculo:</span>
                         <select id="baseToggle" onchange="toggleTableBase()" class="bg-slate-100 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 text-xs text-slate-800 dark:text-white rounded-xl px-3 py-1.5 focus:ring-emerald-500">
-                            <option value="dry">Base Seca (100% MS)</option>
-                            <option value="fresh">Base Húmeda (93.6581% HUMEDAD)</option>
+                            <option value="dry">Base Seca </option>
+                            <option value="fresh">Base Húmeda </option>
                         </select>
                     </div>
                 </div>
@@ -621,12 +621,12 @@
                         <thead class="bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-white font-semibold uppercase tracking-wider text-[11px]">
                             <tr>
                                 <th class="p-3.5">AQP</th>
-                                <th class="p-3.5">%H</th>
-                                <th class="p-3.5">% MS</th>
+                                <th class="p-3.5">%MS</th>
+                                <th class="p-3.5">% H</th>
+                                <th class="p-3.5">% CEN</th>
                                 <th class="p-3.5">% PC</th>
                                 <th class="p-3.5">% EE</th>
                                 <th class="p-3.5">% FC</th>
-                                <th class="p-3.5">% CEN</th>
                                 <th class="p-3.5">% ELN</th>
                                 <th class="p-3.5">Referencia (2016-2026)</th>
                             </tr>
@@ -1240,11 +1240,32 @@ function cerrarModalFDN() {
                 elnVal: 45.5000, elnBase: 'bh',// ELN por diferencia
                 ref: "/" 
             },
-            { name: "Pasto Insurgente (U. brizantha)", h: 75.5000, ms: 24.5000, pcVal: 8.5000, pcBase: 'bh', cenVal: 8.5000, cenBase: 'bh', eeVal: 1.8000, eeBase: 'bs', fcVal: 34.0000, fcBase: 'bs', elnVal: 47.2000, elnBase: 'bh', ref: "Reyes et al. (2023)" },
+                        { 
+                name: "Agave Atrovirens", 
+                h: 90.8000,
+                ms: 9.2000,
+                pcVal: 0.2100 , pcBase: 'bh',
+                cenVal: 0.8200, cenBase: 'bh',
+                eeVal: 0.2600, eeBase: 'bh',
+                fcVal: 2.9800, fcBase: 'bh',
+                elnVal: 4.9300, elnBase: 'bh',
+                ref: "Flores" 
+            },
+              { 
+                            name: "Ensilado Pencas Maguey ", 
+                h: 75.5000,
+                ms: 24.5000,
+                pcVal: 1.3500 , pcBase: 'bh',
+                cenVal: 2.4000, cenBase: 'bh',
+                eeVal: 0.6200, eeBase: 'bh',
+                fcVal: 6.8300, fcBase: 'bh',
+                elnVal: 13.3000, elnBase: 'bh',
+                ref: "Flores"
+ },
             { name: "Leucaena (L. leucocephala)", h: 72.0000, ms: 28.0000, pcVal: 22.5000, pcBase: 'bh', cenVal: 9.0000, cenBase: 'bh', eeVal: 2.5000, eeBase: 'bs', fcVal: 22.0000, fcBase: 'bs', elnVal: 44.0000, elnBase: 'bh', ref: "Elizondo-Salazar (2020)" },
             { name: "Estrella de África (C. nlemfuensis)", h: 79.0000, ms: 21.0000, pcVal: 9.5000, pcBase: 'bh', cenVal: 8.8000, cenBase: 'bh', eeVal: 1.6000, eeBase: 'bs', fcVal: 31.5000, fcBase: 'bs', elnVal: 48.6000, elnBase: 'bh', ref: "Shimada (2018)" },
             { name: "Matarratón (G. sepium)", h: 75.0000, ms: 25.0000, pcVal: 21.0000, pcBase: 'bh', cenVal: 10.2000, cenBase: 'bh', eeVal: 2.8000, eeBase: 'bs', fcVal: 20.5000, fcBase: 'bs', elnVal: 45.5000, elnBase: 'bh', ref: "Mendoza et al. (2022)" },
-            { name: "Cacahuatillo (A. pintoi)", h: 80.0000, ms: 20.0000, pcVal: 18.5000, pcBase: 'bh', cenVal: 9.0000, cenBase: 'bh', eeVal: 2.2000, eeBase: 'bs', fcVal: 24.0000, fcBase: 'bs', elnVal: 46.3000, elnBase: 'bh', ref: "Weiss (2022)" }
+            
         ];
 
         function populateTable(isDry = true) {
@@ -1291,12 +1312,12 @@ const hFin = isDry ? 0.0000 : row.h;  // En Base Seca la humedad es 0; en Base H
 
                 tr.innerHTML = `
                     <td class="p-3.5 font-bold text-slate-900 dark:text-white">${row.name}</td>
-                    <td class="p-3.5 ${claseHumedad}">${hFin.toFixed(4)}%</td>
                     <td class="p-3.5 ${claseMateriaSeca}">${msFin.toFixed(4)}%</td>
+                    <td class="p-3.5 ${claseHumedad}">${hFin.toFixed(4)}%</td>
+                    <td class="p-3.5">${cenFin.toFixed(4)}%</td>
                     <td class="p-3.5">${pcFin.toFixed(4)}%</td>
                     <td class="p-3.5">${eeFin.toFixed(4)}%</td>
                     <td class="p-3.5">${fcFin.toFixed(4)}%</td>
-                    <td class="p-3.5">${cenFin.toFixed(4)}%</td>
                     <td class="p-3.5">${elnFin.toFixed(4)}%</td>
                     <td class="p-3.5 text-slate-500 dark:text-slate-400">${row.ref}</td>
                 `;
