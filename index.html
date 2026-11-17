@@ -140,35 +140,7 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Quick Access Summary Cards -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div onclick="switchTab('climatico')" class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition cursor-pointer group">
-                    <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/50 rounded-xl flex items-center justify-center text-emerald-700 dark:text-emerald-400 mb-4 group-hover:scale-110 transition">
-                        <i class="fa-solid fa-temperature-arrow-up text-xl"></i>
-                    </div>
-                    <h3 class="font-bold text-slate-900 dark:text-white text-base mb-1">Clima A de México</h3>
-                    <p class="text-xs text-slate-500 dark:text-slate-400">Temperaturas &gt;18 °C. Llanuras costeras del Golfo, Pacífico y Península de Yucatán.</p>
-                </div>
-
-                <div onclick="switchTab('metodologia')" class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition cursor-pointer group">
-                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/50 rounded-xl flex items-center justify-center text-blue-700 dark:text-blue-400 mb-4 group-hover:scale-110 transition">
-                        <i class="fa-solid fa-flask text-xl"></i>
-                    </div>
-                    <h3 class="font-bold text-slate-900 dark:text-white text-base mb-1">Metodología AQP</h3>
-                    <p class="text-xs text-slate-500 dark:text-slate-400">Las 6 fracciones del análisis de Weende: MS, PC, EE, FC, Cenizas y ELN por diferencia.</p>
-                </div>
-
-                <div onclick="switchTab('fichas')" class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition cursor-pointer group">
-                    <div class="w-12 h-12 bg-amber-100 dark:bg-amber-900/50 rounded-xl flex items-center justify-center text-amber-700 dark:text-amber-400 mb-4 group-hover:scale-110 transition">
-                        <i class="fa-solid fa-seedling text-xl"></i>
-                    </div>
-                    <h3 class="font-bold text-slate-900 dark:text-white text-base mb-1">Fichas Técnicas</h3>
-                    <p class="text-xs text-slate-500 dark:text-slate-400">Gramíneas, Leguminosas y Arbustos con taxonomía oficial y nomenclatura NRC.</p>
-                </div>
-            </div>
-        </section>
-
+</section>
         <!-- TAB 2: MARCO TEÓRICO  -->
         <section id="climatico" class="tab-panel space-y-8">
             <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 shadow-sm space-y-6">
@@ -263,9 +235,10 @@
                 </div>
             </div>
         </section>
-
-        <!-- TAB 3: METODOLOGÍA AQP (ANÁLISIS QUÍMICO PROXIMAL) -->
+        <!-- TAB 3: METODOLOGÍA AQP Y FDN -->
         <section id="metodologia" class="tab-panel space-y-8">
+            
+            <!-- BLOQUE 1: Metodología AQP (Análisis Químico Proximal de Weende) -->
             <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 shadow-sm space-y-6">
                 <div class="border-b border-slate-200 dark:border-slate-700 pb-4">
                     <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">Fundamentos de Laboratorio</span>
@@ -276,7 +249,7 @@
                     El Análisis Químico Proximal (AQP) o Método de Weende divide de manera cuantitativa cualquier forraje en 6 fracciones analíticas estándar. Constituye la base para evaluar la calidad bromatológica de los alimentos para rumiantes.
                 </p>
 
-                <!-- Flowchart visual grid -->
+                <!-- Flowchart visual grid de las 6 fracciones -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <!-- MS -->
                     <div class="bg-slate-50 dark:bg-slate-700/50 p-5 rounded-2xl border border-slate-200 dark:border-slate-600 space-y-2">
@@ -351,6 +324,33 @@
                     </div>
                 </div>
             </div>
+
+            <!-- BLOQUE 2: Metodología FDN (Determinación de Paredes Celulares) -->
+            <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 shadow-sm space-y-6">
+                <div class="border-b border-slate-200 dark:border-slate-700 pb-4">
+                    <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">Análisis Especializado de Pared Celular</span>
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-0.5">Metodología FDN (Determinación de Paredes Celulares)</h2>
+                </div>
+
+                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                    El sistema de análisis de fibra al detergente neutro (Van Soest) permite separar los constituyentes celulares según su solubilidad, aislando la pared celular vegetal.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- FDN (Fibra Detergente Neutro) -->
+                    <div class="bg-slate-50 dark:bg-slate-700/50 p-5 rounded-2xl border border-slate-200 dark:border-slate-600 space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400">Fracción FDN</span>
+                            <i class="fa-solid fa-wheat-awn text-slate-400"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 dark:text-white text-sm">Fibra Detergente Neutro (FDN)</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-300">
+                            <strong>Fundamento:</strong> Digestión con solución detergente neutro a ebullición. Aisla y cuantifica los componentes de la pared celular vegetal (celulosa, hemicelulosa y lignina).
+                        </p>
+                    </div>
+                </div>
+            </div>
+
         </section>
 
         <!-- TAB 4: RESULTADOS AQP -->
@@ -1229,7 +1229,7 @@ function cerrarModalFDN() {
                 name: "Agave salmiana (Equipo 2)", 
                 h: 6.3419,       // % Humedad experimental
                 ms: 93.6581,     // % Materia Seca experimental real
-                pcVal: 11.0000, pcBase: 'bh',  // Proteína (determinado con humedad -> se convierte)
+                pcVal: 5.3214, pcBase: 'bh',  // Proteína (determinado con humedad -> se convierte)
                 cenVal: 10.7251, cenBase: 'bh',// Cenizas (determinado con humedad -> se convierte)
                 eeVal: 2.0000, eeBase: 'bs',   // Extracto Etéreo (determinado en seco)
                 fcVal: 32.0000, fcBase: 'bs',  // Fibra Cruda (determinado en seco)
